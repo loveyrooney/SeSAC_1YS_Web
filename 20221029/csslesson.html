@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .red {color:red;}
+        .underline {text-decoration: underline;}
+        #parent .blue {color:blue;} /*특정 선택한 태그 안에 있는 모든 클래스에 적용, complex, blabla*/
+        #parent > .blue {color:green;} /*특정선택한 태그 자식인 애만 적용 complex*/
+        .blue + p {color:pink;} /*인접형제선택자는 선택한 클래스 바로 "다음"형제에게적용 collector*/
+        .blue ~ p {font-weight: 800;} /*선택한 클래스 다음의 모든 형제 선택 colletor, brothers*/
+        .mouseover {width:100px; height:100px; background-color: aquamarine;
+                    text-align: center; line-height: 50px;}
+        .mouseover:hover {cursor:pointer; background-color: yellow;}
+        /* active:활성화 시켰을때, focus:인풋에커서있을때, link:방문안한링크, visited:방문한링크*/ 
+        #king h1:first-child {color:greenyellow;} /* king의 자식 중 첫번째인 h1에 적용*/
+        #king h2:last-child {color:blueviolet;} /* king의 자식 중 마지막인 h2에 적용*/
+        #king div:nth-child(4) {color:blue;} 
+        /*자식 중 n번째. 어떤요소인지와 관계없음, span:nth-child(3)해도 sixth에 적용 안됨*/
+        /* 그니까 child란 개념은 자식의 순서에만 신경쓰는거임 요소가 뭔지와 관계없음*/
+        #king *:not(span) { background-color:yellow; }
+        #static {width: 100px; height:100px; background-color: aquamarine;}
+        #relative {width: 100px; height: 100px; background-color: chartreuse;
+                   position: relative; left:100px;} /*static일때의 위치가 기준일때의 상대위치*/
+        #absolute {width: 100px; height: 100px; background-color: coral; 
+                   position: absolute; left:20px;} 
+        #fixed {width: 100px; height: 100px; background-color: cornflowerblue; 
+                position: fixed; top:10px; left:500px;} /* 위치 좌표값을 안주면 안나옴*/
+        #absolute2 {width: 100px; height: 100px; background-color: black;
+                    position:absolute; left:20px;} /* 얘는 body가 relative임. */
+        /* z-index는 relative와 absolute 에만 적용가능. */
+        #skewX:hover {transform: skewX(50deg);}
+        #skewY:hover {transform: skewY(50deg);}
+        #skewXY:hover {transform: skew(50deg, 50deg);}
+        #rotateX:hover {transform: rotateX(100deg);}
+        #rotateY:hover {transform: rotateY(100deg);}
+        #rotateZ:hover {transform: rotateZ(100deg);}
+        #scaleX:hover {transform: scaleX(2);}
+        #scaleY:hover {transform: scaleY(2);}
+        #scaleXY:hover {transform: scale(2);}
+        #scaleXY2:hover {transform: scale(2,3);}
+    </style>
+    <title>css lesson</title>
+</head>
+<body>
+   <h1>1. 선택자의 개념</h1>
+   <hr>
+   <h1>hello</h1>
+   <p class="red">world</p>
+   <h2 class="red underline">this is</h2>
+   <span class="underline">css world</span> 
+   <hr>
+   <h1>2. 복합 선택자, 가상 선택자</h1>
+   <hr>
+   <div id="parent">
+        <h1 class="blue">complex</h1>
+        <p>collector</p>
+        <p>brothers</p>
+        <div>
+            <span class="blue">blabla</span>
+        </div>
+   </div>
+   <h2 class="blue">freedom</h2>
+   <div class="mouseover">click</div>
+   <hr>
+   <div id="king">
+        <h1>ohohoh</h1>
+        <span>first</span>
+        <span>second</span>
+        <p>third</p>
+        <div>fourth</div>
+        <h3>fifth</h3>
+        <span>sixth</span>
+        <span>seventh</span>
+        <h2>eighth</h2>
+   </div>
+   <hr>
+   <h1>3. 포지션</h1>
+   <hr>
+   <div id="static"></div>
+   <div id="relative">
+        <div id="absolute"></div>
+   </div>
+   <div id="fixed"></div>  
+   <div id="absolute2"></div>
+   <hr>
+   <h1>4. skew, lotate, transform, scale</h1>
+   <hr>
+   <img src="americano.jpg" id="skewX">
+   <img src="americano.jpg" id="skewY">
+   <img src="americano.jpg" id="skewXY">
+   <img src="americano.jpg" id="rotateX">
+   <img src="americano.jpg" id="rotateY">
+   <img src="americano.jpg" id="rotateZ">
+   <img src="americano.jpg" id="scaleX">
+   <img src="americano.jpg" id="scaleY">
+   <img src="americano.jpg" id="scaleXY">
+   <img src="americano.jpg" id="scaleXY2">
+</body>
+</html>
