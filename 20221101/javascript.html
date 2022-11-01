@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>var는 중복선언, 재할당 가능. let은 중복선언 안되고 재할당은 가능. const는 상수.
+       NaN의 자료형은 number다. null은 object이다.기본형보다 오브젝트가 더 큰개념이라서그런가.
+       function은 자료형이 fucntion임.
+    </p>
+    <p>
+        형변환: 숫자형인변수.toString(), parseInt('문자열')
+        == : 값이 같으면 같다 === : 값과 타입까지 같아야 같다
+    </p>
+    <p>
+        인자가 필요한 함수의경우, 인자의 개수를 맞추지 않으면 실행안됨.
+    </p>
+    <script>
+        alert('hi');
+        function go(){
+            console.log(2+2);
+        }
+        go();
+
+        function hi(a,b){
+            console.log(a+" "+b+" "+'hello');
+        }
+        hi("heo","manager");
+        hi("kim", "");
+
+        var no_1 = 2
+        var no_2 = 1
+        var no_3 = 4
+
+        function add(){
+            alert(no_1 + no_2 + no_3);
+        }
+        function sub(){
+            alert(no_1 - no_2);
+        }
+        function divide(){
+            alert(no_1/no_2);
+        }
+        function mul(){
+            alert(no_1*no_2)
+        }
+        
+        var a = prompt("write your age");
+        if ( a>100){
+            console.log("are you still alive?");
+        } else if (a>60){
+            console.log("pretty good season");
+        } else if (a>30){
+            console.log("you are the VIP");
+        } else if(a>20){
+            switch(a){
+                case 23:
+                    console.log("you are not old");
+                break;
+            }
+            console.log("go, gogogogogo! anywhere");
+        } else if (a>10){
+            console.log("everything is possible");
+        } else {
+            console.log("baby watch your step");
+        }
+        
+        function gugu(){
+            for (var i=1; i<10; i++){
+                console.log("-----"+i+"단 -----");
+                for (var j=1; j<10; j++){
+                    console.log(i +"*"+j +"="+i*j);
+                 } 
+            }
+        }
+        /*gugu();*/
+
+        var k = 0;
+        while (k<5){
+            console.log(k);
+            k=k+1;
+        }
+
+     
+        var sum = 0;
+        var sum2 = 0;
+        var sum3 = 0;
+
+        function suum(){
+            for(var i=2; i<100; i++){  
+             if(i%2 == 0){
+                sum = sum+i;
+              }
+            
+            }
+            for(var j=3; j<100; j++){
+             if(j%3 == 0){
+                sum2 = sum2+j;
+              }
+    
+            }
+            for(var k=6; k<100; k++){
+              if(k%6 == 0){
+                sum3 = sum3+k;
+              }
+
+             }
+             console.log((sum+sum2)-sum3);
+        }
+        suum();
+    
+    </script>
+</body>
+</html>
