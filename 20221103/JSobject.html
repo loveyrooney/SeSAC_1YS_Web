@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JS object</h1>
+    <p id="method">
+        객체 안에는 속성과 함수를 가질 수 있다. 
+        var cat = { name:"nabi", age:1, mew: function(){return "yayong";} }
+        return은 함수의 내용을 변수에 담아 그것을 돌려주는 느낌임. 함수에 하나만 존재 가능.
+    </p>
+    <p class="array">
+        array : 어떤 타입이든 들어올 수 있다. 2가지 방법으로 만들 수 있음. 
+        배열의 속성들 : push(맨뒤에 요소추가), unshift(맨앞에 요소추가), 
+        pop(맨뒤의 요소꺼내기), shift(맨앞의 요소꺼내기) 
+        * shift/unshift는 앞에다가 요소가 추가/삭제 되기 때문에 인덱스가 전부 변경되는것에 유의.
+    </p>
+    <p class="array">
+        딕셔너리는 키와 밸류로 이루어져 있음. 인덱스 개념 없음. 키를 기반으로 밸류를 가져옴.
+        배열(리스트)와 딕셔너리의 차이점 : 배열이 좀더 큰 개념이고 배열은 인덱스를 기반해서 밸류를 가져옴.
+    </p>
+    <p>
+        Date 객체 : new Date() 하면 현재날짜 밀리세컨드 단위로 불러옴
+        new(2022,11,3,13,38) 등으로 지정해서도 불러올수 있음. 
+        date의 속성들 : Year/Month/Date/Day/Time/Hours 등.
+        Day는 요일을 인덱스 기반으로 출력함. 0이 일요일
+        month도 월을 인덱스 기반으로 출력함. 0이 1월
+    </p>
+    <p>
+        Math 객체 : 브라우저마다 결과가 다름... 
+        Math의 속성들 : min/max/random(0과 1사이의 난수)/round(반올림)/floor(내림)/ceil(올림)
+        비교하는 값의 자료형이 모두 숫자여야됨. 아니면 none이나옴
+        Math.ceil(Math.random()*10/100/1000등) 10까지의 랜덤, 100까지의랜덤, 1000까지의랜덤 정수ㅇㅇ
+    </p>
+    <p>
+        Document Object Model : 문서 객체 모델
+        Document 객체 : 문서 각각의 요소에 접근하는 객체
+        Document의 속성들 : documentElement(문서전체)/head/title/URL/domain
+        querySelector는 여러개 있을 시 맨위에 한가지만 가져옴. 다 가져올려면 All
+        복수 개의 요소를 가져올 때는 배열로 출력해줌. 
+        document.querySelectorAll("array")[1]  하면 어레이 클래스 두개 중에 두번째꺼가져옴.
+        get으로 가져오면 html collection, query로 가져오면 nodelist로 나타남.  
+        innerText는 적용내용을 전부다 텍스트로 인식, innerHTML은 html문법으로 인식
+    </p>
+    <button onclick="alert1();">click!</button>
+    <input value="go">
+        <button type="button" onclick="getvalue();" value="go">go!</button>
+    </input>
+    <p class="p1"></p>
+<script>
+    var cat = { name:"nabi", age:1, mew: function(){return "yayong";} }
+    console.log(cat.mew());
+
+    //cat은 지금 딕셔너리 형태로 되어있음. 다음과 같이 두가지로 요소 추가 가능
+    cat.gender = 'M';
+    cat["color"] = "black";
+    //딕셔너리는 다음과 같이 두가지로 실행 가능
+    console.log(cat["name"]); //이거는 인덱스처럼 가져온거고
+    console.log(cat.color);  //이거는 키값으로 가져온거임
+
+    var array1 = [1, "2", 35, 5.7, "hello", 6, 7, 8, 9, 10, 11];
+    var array2 = new Array(4, "5", 400, 10.35, "bye");
+    console.log(array1.indexOf(35)); /* 해당 값의 인덱스가 무엇?*/
+    console.log(array2[3]); /* 해당 인덱스의 값은 무엇?*/
+    console.log(array1.length); 
+    let index = Math.random()*10
+    console.log(array1[index]); //인덱스에 넘버형태 변수 넣는거 불가?
+    
+    var date = new Date();
+    console.log(date.getTime());
+    console.log(date.getMonth());
+    
+    var min = 2; var max = 11;
+    console.log(Math.random()* (max-min)+min); //범위 안에서의 랜덤값
+
+    function alert1(){
+        alert("this is alert");
+    }
+
+    var button = document.querySelector("button")[1];
+    function getvalue(){
+        console.log(button.value);
+    }
+   
+    var p1 = document.querySelector(".p1");
+    p1.innerText = "p태그입니다.";
+
+</script>
+</body>
+</html>

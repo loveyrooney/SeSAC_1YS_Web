@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pizza {width: 400px; height: 100px; border:1px solid grey;}
+        #size {width: 50px; background-color:white; position: absolute; top:765px; left:30px;}
+        #option {width: 80px; background-color:white; position: absolute; top:890px; left:30px;}
+        #suum {width: 40px; background-color:white; position: absolute; top:1010px; left:30px;}
+    </style>
+</head>
+<body>
+    <img src="../20221029/americano.jpg" width="100" height="100">
+    <button type="button" onclick="imgchange()">image</button>
+    <button type="button" onclick="add()">creatElement</button>
+    <button type="button" onclick="remove()">remove</button>
+    <ul>
+        <li>name</li>
+    </ul>
+    <hr>
+    <h1>계산기 실습</h1>
+    <p>값1:<input type="text" id="val1"></p>
+    <p>값2:<input type="text" id="val2"></p>
+    <p>연산자:<input type="text" id="cal"></p>
+    <p>결과:<input type="text" id="return"></p>
+    <button type="button" onclick="calculate()">계산하기</button>
+    <button type="button" onclick="refresh()">초기화</button>
+    <h1>방명록 실습</h1>
+    <p>방명록입니다.</p>
+    <p>작성자<input type="text" id="visit"></p>
+    <p>내용<input type="text" id="content" style="width:400px"></p>
+    <button type="button" onclick="addvisit()">작성</button>
+    <table border="2">
+        <tbody>
+            <tr>
+                <td>번호</td>
+                <td width="60">작성자</td>
+                <td width="300">내용</td>
+                <td width="150">작성일</td>
+            </tr>
+        </tbody>     
+    </table>
+    <hr>
+    <h1>피자 주문</h1>
+    <div class="pizza">
+        <p id="size">사이즈</p>
+        <p>Large - 24000원</p>
+    </div>
+    <br>
+    <div class="pizza">
+        <p id="option">추가 주문</p>
+        <br>
+        <span><input type="checkbox" name="order" id="pickle" value="800" onclick="pricesum()">피클(800원)</span>
+        <span><input type="checkbox" name="order" id="chili" value="300" onclick="pricesum()">칠리 소스(300원)</span>
+        <span><input type="checkbox" name="order" id="dipping" value="200" onclick="pricesum()">디핑 소스(200원)</span>
+        <span><input type="checkbox" name="order" id="cheese" value="4800" onclick="pricesum()">치즈스틱(4개,4800원)</span>
+        <span><input type="checkbox" name="order" id="corn" value="2400" onclick="pricesum()">콘 샐러드(2400원)</span>
+    </div>
+    <br>
+    <div class="pizza">
+        <p id="suum">합계</p>
+        <p id="price"></p>
+    </div>
+<script>
+    function imgchange(){
+        var tag = document.querySelector("img");
+        tag.src = "../20221029/cafelatte.jpg";
+    }
+
+    function add(){
+        var li = document.createElement("li");
+        li.innerText = "new list";
+        var li2 = document.createElement("li");
+        li2.innerText = "new list22";
+        var ul = document.querySelector("ul");
+        ul.append(li, li2);
+    }
+
+    function remove(){
+        var li = document.querySelector("li");
+        li.remove(); //자기자신을 선택해 삭제하는 방법
+        
+        /* var ul = document.querySelector("ul");
+        ul.removeChild(li); 부모를 선택해 그 자식을 삭제하는 방법 */
+    } 
+
+        
+    var val1 = document.getElementById("val1");
+    var val2 = document.getElementById("val2");
+    var cal = document.getElementById("cal");
+    var re = document.getElementById("return");
+
+    function calculate(){
+        if(cal.value == "+"){
+            re.value = parseInt(val1.value) + parseInt(val2.value);
+        } else if(cal.value == "-"){
+            re.value = parseInt(val1.value) - parseInt(val2.value);
+        } else if(cal.value == "*"){
+            re.value = parseInt(val1.value) * parseInt(val2.value);
+        } else if(cal.value == "/"){
+            re.value = parseInt(val1.value) / parseInt(val2.value);
+        } else {
+            re.value = "only +-*/";
+        }
+    }
+
+    function refresh(){
+        val1.value = "";
+        val2.value = "";
+        cal.value = "";
+        re.value = "";
+    }
+
+    var date = new Date();
+    var y = date.getFullYear();
+    var m = (date.getMonth())+1;
+    var d = date.getDate();
+    var h = date.getHours();
+    var mi = date.getMinutes();
+    var i = 0;
+    function addvisit(){
+        var visit = document.querySelector("#visit");
+        var content = document.querySelector("#content");
+        var tr = document.querySelector("tbody");
+        var newtr = document.createElement("tr");
+        tr.appendChild(newtr);
+        var newtd1 = document.createElement("td");
+        newtd1.innerText = `${i=i+1}`
+        var newtd2 = document.createElement("td");
+        newtd2.innerText = `${visit.value}`
+        var newtd3 = document.createElement("td");
+        newtd3.innerText = `${content.value}`
+        var newtd4 = document.createElement("td");
+        newtd4.innerText = `${y}-${m}-${d} ${h}:${mi}`
+        tr.append(newtd1, newtd2, newtd3, newtd4);
+    }
+
+    var order = document.getElementsByName("order");
+    var pickle = document.querySelector("#pickle");
+    var chili = document.querySelector("#chili");
+    var dipping = document.querySelector("#dipping");
+    var cheese = document.querySelector("#cheese");
+    var corn = document.querySelector("#corn");
+    
+    function pricesum(){
+        var sum = 0;
+         for(var i=0; i<order.length; i++){
+            if(order[i].checked == true){
+                var sum = sum + parseInt(order[i].value);
+                var p = document.querySelector("#price");
+                p.innerText = ` ${sum+24000}원`
+            }  
+         }
+         
+    }
+</script>
+</body>
+</html>
