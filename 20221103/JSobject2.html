@@ -53,11 +53,11 @@
     <div class="pizza">
         <p id="option">추가 주문</p>
         <br>
-        <span><input type="checkbox" name="order" id="pickle" value="800" onclick="pricesum()">피클(800원)</span>
-        <span><input type="checkbox" name="order" id="chili" value="300" onclick="pricesum()">칠리 소스(300원)</span>
-        <span><input type="checkbox" name="order" id="dipping" value="200" onclick="pricesum()">디핑 소스(200원)</span>
-        <span><input type="checkbox" name="order" id="cheese" value="4800" onclick="pricesum()">치즈스틱(4개,4800원)</span>
-        <span><input type="checkbox" name="order" id="corn" value="2400" onclick="pricesum()">콘 샐러드(2400원)</span>
+        <span><input type="checkbox" name="order" value="800" onclick="pricesum()">피클(800원)</span>
+        <span><input type="checkbox" name="order" value="300" onclick="pricesum()">칠리 소스(300원)</span>
+        <span><input type="checkbox" name="order" value="200" onclick="pricesum()">디핑 소스(200원)</span>
+        <span><input type="checkbox" name="order" value="4800" onclick="pricesum()">치즈스틱(4개,4800원)</span>
+        <span><input type="checkbox" name="order" value="2400" onclick="pricesum()">콘 샐러드(2400원)</span>
     </div>
     <br>
     <div class="pizza">
@@ -139,12 +139,6 @@
     }
 
     var order = document.getElementsByName("order");
-    var pickle = document.querySelector("#pickle");
-    var chili = document.querySelector("#chili");
-    var dipping = document.querySelector("#dipping");
-    var cheese = document.querySelector("#cheese");
-    var corn = document.querySelector("#corn");
-    
     function pricesum(){
         var sum = 0;
          for(var i=0; i<order.length; i++){
