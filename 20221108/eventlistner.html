@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <input type="text" id="input1">
+    <div style="width:100px; height:100px; background-color:yellow;" id="div1"></div>
+    <p id="alert"></p>
+    <hr>
+    <p>날짜:<input type="text" id="date"></p>
+    <p>내용:<input type="text" id="content"></p>
+    <button type="button" id="btn" onclick="writeSchedule()">작성</button>
+    <table style="border-collapse: collapse;" width="50%" cellpadding=10>
+        <caption style="color:green; font-size:2em;">2022년 7월</caption>
+        <tr>
+            <td style="color:red"><p>日</p></td>
+            <td><p>月</p></td>
+            <td><p>火</p></td>
+            <td><p>水</p></td>
+            <td>木</td>
+            <td>金</td>
+            <td style="color:blue">土</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><p>1</p></td>
+            <td style="color:blue"><p>2</p></td>
+        </tr>
+        <tr>
+            <td style="color:red"><p>3</p></td>
+            <td><p>4</p></td>
+            <td><p>5</p></td>
+            <td><p>6</p></td>
+            <td><p>7</p></td>
+            <td><p>8</p></td>
+            <td style="color:blue">9</td>
+        </tr>
+        <tr>
+            <td style="color:red">10</td>
+            <td><p>11</p></td>
+            <td><p>12</p></td>
+            <td><p>13</p></td>
+            <td><p>14</p></td>
+            <td><p>15</p></td>
+            <td style="color:blue"><p>16</p></td>
+        </tr>
+        <tr>
+            <td style="color:red"><p>17</p></td>
+            <td><p>18</p></td>
+            <td><p>19</p></td>
+            <td><p>20</p></td>
+            <td><p>21</p></td>
+            <td><p>22</p></td>
+            <td style="color:blue"><p>23</p></td>
+        </tr>
+        <tr>
+            <td style="color:red">24</td>
+            <td><p>25</p></td>
+            <td><p>26</p></td>
+            <td><p>27</p></td>
+            <td><p>28</p></td>
+            <td><p>29</p></td>
+            <td style="color:blue"><p>30</p></td>
+        </tr>
+        <tr>
+            <td style="color:red"><p>31</p></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    
+    
+    <script>
+        /* 변수를 선언만 하고 다른 영역에서 할당하는 이유를 이 코드를 보면 알수있음.
+        아래 코드에서 target은 let과 같은 느낌으로 쓰여짐 
+        const는 선언 및 할당을 그 자리에서 해야됨. 
+        */
+        var target;   
+            
+        $("td").on("click", function( obj ){
+            //console.log(obj); <이벤트>는 <객체>이다!! 함수가 아님. 여기서는 onclick 이벤트.
+            target = obj.currentTarget; //currentTarget은 이벤트가 발생한 element를 가리킴
+            $("#date").val($(obj.currentTarget.children[0]).text());
+        });
+        function writeSchedule(){
+            // console.log(target); 91번 라인에서 타겟변수를 할당했음. 재할당 안했으니까 여기도 계속적용.
+            var content = $("#content").val();
+
+            if(target.children.length>1){
+                var div = target.children[1];
+                div.innerText = content;
+            } else {
+                var div = document.createElement("div");
+                div.style = "font-size:0.4em;"
+                div.innerText = content;
+
+                $(target).append(div);
+            }
+        }
+                
+
+        /* $("td").on("click",function(){
+            $("#date").val($(this).text());
+        });
+
+        var td = document.querySelectorAll("td");
+        function writeSchedule(){
+            for(var i=0; i<td.length; i++){
+                if(td[i].textContent == $("#date").val()){
+                    var addTd = $("#content").keydown().val();
+                    const adddiv = document.createElement("div");
+                    td[i].appendChild(adddiv);
+                    adddiv.innerText = `${addTd}`
+                    //$("td"[i]).children().html("<p>hi</p>"); 
+                }
+            }
+        }  textContent는 모든 자식을 병합해서 돌려주기 때문에 이방법 쓸수없음. */ 
+
+        $("#input1").keydown(function(e){
+            //$("#alert").text("글자가 입력됨," +  e.currentTarget.value);
+            console.log("input keydown");
+            if(e.keyCode == 13){
+                console.log("this is enter");
+            }
+        });
+
+        $("#input1").keyup(function(e){
+            console.log("input keyup");
+        });
+
+        //mouse event : mouseover
+        $("#div1").click(function(){
+            console.log("div click");
+        });
+
+    </script>
+</body>
+</html>
