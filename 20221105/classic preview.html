@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cho Seoung Jin Archive</title>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <script src="classic.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <style>
       h1 {text-align: center; font-weight: bold; padding:10px; margin: 50px;}
@@ -20,11 +18,17 @@
            animation-delay: 1s;}
         @keyframes string {0%{right:-100%;} 100%{right:100%}}
       #fantasy { background: linear-gradient(to bottom right, rgba(106, 185, 140, 0.432), rgba(103, 26, 218, 0.276));}
-      #fanh1 {text-shadow: 0px 5px 7px rgba(255, 255, 255, 0.833); }
+      #fanh1, #best1 {text-shadow: 0px 5px 7px rgba(255, 255, 255, 0.833); }
       #checkbox {margin: 5% 30% 0% 30%;}
       #inputbox {margin: 0% 30% 5% 30%;}
       h3 {margin: 5% 0% 3% 0%; font-size: 1.3em;}
       .hidden {display: none;}
+      #modalback {width: 100%; height: 100%; position: absolute; background-color: rgba(75, 91, 104, 0.712);}
+      #modalbody {width: 30%; height: 40%; padding:3%; position:absolute; top:50%; left:35%; 
+                  border-radius: 20px; text-align: center;  background-color: rgba(240, 248, 255, 0.808);}
+      #carouselExampleControls {margin:5%;}
+      .carousel-item > span {font-size: 1.5em; text-align: center;}     
+      #bestworks {background: linear-gradient(to bottom left,  rgba(103, 26, 218, 0.276), rgba(106, 185, 140, 0.432));}   
     </style>
   </head>
 <body>
@@ -42,7 +46,7 @@
                 <span>Yellow Lounge</span><br>
                 <span>2016.12.1.</span>
               </p>
-              <a href="https://youtu.be/taY5oHleS4I" class="btn btn-primary" target="_blank">Youtube</a>
+              <a href="https://youtu.be/taY5oHleS4I" class="btn btn-dark" target="_blank">Youtube</a>
             </div>
           </div>
         </div>
@@ -57,7 +61,7 @@
                 <span>Warsaw Philharmonic Concert Hall</span><br>
                 <span>2015.10.10.</span>
               </p>
-              <a href="https://youtu.be/2l9Wpg_y45g" class="btn btn-primary" target="_blank">Youtube</a>
+              <a href="https://youtu.be/2l9Wpg_y45g" class="btn btn-dark" target="_blank">Youtube</a>
             </div>
           </div>
         </div>
@@ -72,7 +76,7 @@
                 <span>Brussels in Belgium</span><br>
                 <span>2017.7.1.</span>
               </p>
-              <a href="https://youtu.be/nLNEjs4-oN4" class="btn btn-primary" target="_blank">Youtube</a>
+              <a href="https://youtu.be/nLNEjs4-oN4" class="btn btn-dark" target="_blank">Youtube</a>
             </div>
           </div>
         </div>
@@ -87,7 +91,7 @@
                 <span>Brussels in Belgium</span><br>
                 <span>2017.7.1.</span>
               </p>
-              <a href="https://youtu.be/e1kSNJOReco" class="btn btn-primary" target="_blank">Youtube</a>
+              <a href="https://youtu.be/e1kSNJOReco" class="btn btn-dark" target="_blank">Youtube</a>
             </div>
           </div>
         </div>
@@ -97,67 +101,58 @@
       <div class="col-12" style="height:50px;"></div>
     </div>
     <div class="row">
-      <div class="col-12 bg-danger" style="height:90px;">
+      <div class="col-12" style="background-color: rgba(93, 77, 137, 0.813); height:90px;">
         <p id="nocturne">If you are classic beginner, Try first listen to this : CHOPIN Nocturne In Eb major, Op.9 No.2</p>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12" style="height:100px;">
-        <h1>CHOPIN BEST WORKS</h1>
-      </div>
-    </div>
-    <div class="row" id="list" style="justify-content:center;">
-      <div class="col-4 col-xxl-2">
-        <div class="list-group" id="list-tab" role="tablist">
-          <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">Nocturne</a>
-          <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="list-profile">Polonaise</a>
-          <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages">Mazurka</a>
-          <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">Etude</a>
+    <div id="bestworks">
+      <div class="row">
+        <div class="col-12" style="height:100px;">
+          <h1 id="best1">CHOPIN BEST WORKS</h1>
         </div>
       </div>
-      <div class="col-8 col-xxl-5">
-        <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-            <a href="https://youtu.be/tSAwZP8e-zQ" target="_blank"><img src="img/noc48.jpg"class="col-12 col-md-8" style="border-radius:20px;"></a>
-            <br>
-            <br>
-            <span>Chopin: Nocturne In C minor, Op.48, No.1</span><br>
-            <span>Warsaw Philharmonic Concert Hall</span><br>
-            <span>2015.10.4.</span>
+      <div class="row" style="justify-content: center;">
+        <div id="carouselExampleControls" class="col-md-10 col-lg-8 col-xl-6 col-xxl-4 carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <a href="https://youtu.be/tSAwZP8e-zQ" target="_blank"><img src="img/noc48.jpg" class="d-block w-100" alt="..."></a>
+              <span>Chopin: Nocturne In C minor, Op.48, No.1 |</span>
+              <span>Warsaw Philharmonic Concert Hall |</span>
+              <span>2015.10.4.</span>
+            </div>
+            <div class="carousel-item">
+              <a href="https://youtu.be/d3IKMiv8AHw" target="_blank"><img src="img/pol53.jpg" class="d-block w-100" alt="..."></a>
+              <span>Chopin: Polonaise In Ab major, Op.53 |</span>
+              <span>Warsaw Philharmonic Concert Hall |</span>
+              <span>2015.10.10.</span>
+            </div>
+            <div class="carousel-item">
+              <a href="https://youtu.be/vN_q-ptm_DA" target="_blank"><img src="img/ma33.jpg" class="d-block w-100" alt="..."></a>
+              <span>Chopin: Mazurka In B minor, Op.33, No.4 |</span>
+              <span>Warsaw Philharmonic Concert Hall |</span>
+              <span>2015.10.15.</span>
+            </div>
+            <div class="carousel-item" >
+              <a href="https://youtu.be/9E82wwNc7r8" target="_blank"><img src="img/etu10.jpg" class="d-block w-100" alt="..."></a>
+              <span>Chopin: Etude In C major, Op.10, No.1 |</span>
+              <span>Warsaw Philharmonic Concert Hall |</span>
+              <span>2015.10.4.</span>
+            </div>
           </div>
-          <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-            <a href="https://youtu.be/d3IKMiv8AHw" target="_blank"><img src="img/pol53.jpg"class="col-12 col-md-8" style="border-radius:20px;"></a>
-            <br>
-            <br>
-            <span>Chopin: Polonaise In Ab major, Op.53</span><br>
-            <span>Warsaw Philharmonic Concert Hall</span><br>
-            <span>2015.10.10.</span>
-          </div>
-          <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
-            <a href="https://youtu.be/vN_q-ptm_DA" target="_blank"><img src="img/ma33.jpg"class="col-12 col-md-8" style="border-radius:20px;"></a>
-            <br>
-            <br>
-            <span>Chopin: Mazurka In B minor, Op.33, No.4</span><br>
-            <span>Warsaw Philharmonic Concert Hall</span><br>
-            <span>2015.10.15.</span>
-          </div>
-          <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
-            <a href="https://youtu.be/9E82wwNc7r8" target="_blank"><img src="img/etu10.jpg"class="col-12 col-md-8" style="border-radius:20px;"></a>
-            <br>
-            <br>
-            <span>Chopin: Etude In C major, Op.10, No.1</span><br>
-            <span>Warsaw Philharmonic Concert Hall</span><br>
-            <span>2015.10.4.</span>
-          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
       </div>
     </div>
     <div id="fantasy">
       <div class="row">
-        <div class="col-12 bg-danger" style="height:90px;"></div>
-      </div>
-      <div class="row">
-        <div class="col-12" style="height:50px;">
+        <div class="col-12" style="height:100px;">
           <h1 id="fanh1">THEME IN FANTASY</h1>
         </div>
       </div>
@@ -166,14 +161,14 @@
       </div>
       <div class="row" style="justify-content:center;">
         <div class="col-6 col-sm-6 col-lg-4" style="margin:3%;">
-          <a href="https://youtu.be/rhIuclUqaQE" target="_blank"><img src="img/fan49.jpg" width="90%"></a><br>
+          <a href="https://youtu.be/rhIuclUqaQE" target="_blank"><img src="img/fan49.jpg" width="90%" style="border-radius:10px;"></a><br>
           <br>
           <span>Chopin: Fantasy in F minor, Op.49</span><br>
           <span>Warsaw Philharmonic Concert Hall</span><br>
           <span>2015.10.4</span>
         </div>
         <div class="col-6 col-sm-6 col-lg-4"  style="margin:3%;">
-          <a href="https://youtu.be/mTcSO1_SifU" target="_blank"><img src="img/fan15.jpg" width="90%"></a><br>
+          <a href="https://youtu.be/mTcSO1_SifU" target="_blank"><img src="img/fan15.jpg" width="90%" style="border-radius:10px;"></a><br>
           <br>
           <span>Schubert: Fantasy in C major, Op.15</span><br>
           <span>Soleberg</span><br>
@@ -181,9 +176,19 @@
         </div>
       </div>
     </div>
+    <div class="hidden" id="modalback">
+      <div class="hidden" id="modalbody">
+        <h5 style="font-weight: bold;">Your tastes</h5>
+        <hr> 
+        <ul id="submitUl"></ul>
+        <hr>
+        <p>Thank you for submit!</p>
+        <button type="button" class="btn btn-secondary" id="close" onclick="close()">Close</button>
+      </div>
+    </div>
     <div id="balance">
       <div class="row">
-        <div class="col-12 bg-danger" style="height:90px;"></div>
+        <div class="col-12" style="height:90px; background-color: rgba(93, 77, 137, 0.813);"></div>
       </div>
       <div class="row">
         <div class="col-12" style="height:100px;">
@@ -193,7 +198,7 @@
       <div id="checkbox">
         <h3>Piano Concerto Balance Game</h3>
         <div class="form-check" style="display:inline-block; width: 50%;">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
           <label class="form-check-label" for="flexRadioDefault1">Chopin Piano Concerto No.1</label>
         </div>
         <div class="form-check" style="display:inline-block;">
@@ -202,7 +207,7 @@
         </div>  
         <h3>Which condition do you want?</h3>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
           <label class="form-check-label" for="flexCheckDefault">38 years old, Chopin Polonaise Op.53</label>
         </div>
         <div class="form-check">
@@ -236,22 +241,6 @@
       <div class="row" style="justify-content: center; margin: 0% 20% 5% 20%;">
         <button type="button" class="btn btn-dark col-2" onclick="submit()">Submit</button>
       </div>
-      <div class="modal" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Your tastes</h5>
-            </div>
-            <div class="modal-body">
-              <ul id="submitUl"></ul>
-              <p>Thank you for submit!</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="close()">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <div id="concerto">
       <div class="row">
@@ -259,16 +248,15 @@
       </div>
       <div class="row">
         <div class="col-12" style="height:100px;">
-          <h1>PIANO CONCERTO</h1>
+          <h1>PIANO CONCERTO COMMING SOON</h1>
         </div>
       </div>
       <div class="row">
         <div class="col-12" style="height:100px;"></div>
       </div>
     </div>
-
-      
-    
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>  
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>  
+    <script src="classic.js"></script>
 </body>
 </html>
