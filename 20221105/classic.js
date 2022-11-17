@@ -1,8 +1,9 @@
 const modalback = document.querySelector("#modalback");
 const modalbody = document.querySelector("#modalbody");
+const submit = document.querySelector("#submit");
 const closebtn = document.querySelector("#close");
 
-function submit(){
+submit.addEventListener("click", ()=> {
     modalback.classList.remove("hidden");
     modalbody.classList.remove("hidden");
     var checkedRadio = $("input[name=flexRadioDefault]:checked");
@@ -23,11 +24,11 @@ function submit(){
     } else {
         $("#submitUl").append(`<li style="list-style:none;">Please write on your tastes</li>`);
     }
-}
+}, {once:true});
 
-function close(){
+
+closebtn.addEventListener("click", ()=>{
     modalback.classList.add("hidden");
     modalbody.classList.add("hidden");
-}
-closebtn.addEventListener("click", close);
+});
 
