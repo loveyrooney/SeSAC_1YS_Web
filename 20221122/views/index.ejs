@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=title%></title> <!--백엔드에서 렌더할때 지정한 변수 키로 불러올수있다-->
+</head>
+<body>
+    <h1>ejs로 만든 html</h1>
+    <img src="/static/img/bal1.jpg"/>
+    <% for (var i=0; i< data.length; i++){ %>
+        <div>hello<%=data[i]%></div>
+    <% } %>  
+    <% var a = 8; %>
+    <div><%=`hi${a}`%></div>
+    <div><%="<span style='color:red;'>안녕</span>"%>하세요</div> <!--<%=""%>는 문자열추가-->
+    <div><%-"<span style='color:red;'>안녕</span>"%>하세요</div> <!--<%-""%>는 태그추가-->
+    <hr>
+    <%-include("test.ejs")%> 
+    <!--이것의 효용: 페이지 내 특정태그덩어리 반복시 그때마다 태그덩어리를 파일로만들어놓고 불러오면됨
+     클래식엔진의 경우 작곡가 nav 바, footer등 덩어리-->
+    <hr>
+    <h3>form 전송</h3>
+    <form action="/getForm" method="get" name="form1"> 
+    <!--action:폼전송할 주소 method:폼전송의 다양한방식. get방식은 url에 정보노출, post방식은 비노출
+    name은 선택사항, but input의 네임은 필수-->
+        <input type="text" name="id">
+        <input type="password" name="pw">
+        <button type="button">submit</button>
+    </form>
+    <script>
+        console.log(document.forms["form1"]);
+    </script>
+</body>
+</html>

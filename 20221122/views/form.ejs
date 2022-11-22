@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>get 요청</h1>
+    <form action="/getForm" method="get" name="form1"> 
+        <!--action:폼전송할 주소 method:폼전송의 다양한방식. get방식은 url에 정보노출, post방식은 비노출
+        name은 선택사항, but input의 네임은 필수-->
+        <span>id<input type="text" name="id" autofocus required/></span>
+        <span>pw<input type="password" name="pw" required/></span><br>
+        <fieldset style="width:50%;">
+            <legend>gender</legend>
+            <input type="radio" name="gender" value="male" id="men"/><label for="men">male</label>
+            <input type="radio" name="gender" value="female" id="women"/><label for="women">female</label>
+        </fieldset>
+        <fieldset style="width:50%;">
+            <legend>interest</legend>
+            <input type="checkbox" name="interest" value="netplix" id="netplix"/><label for="netplix">watching netplix</label> 
+            <input type="checkbox" name="interest" value="music" id="music"/><label id="music">listening music</label>
+            <input type="checkbox" name="interest" value="soccer" id="soccer"/><label for="soccer">playing soccer</label>
+        </fieldset>
+                
+        <button type="submit">submit</button> <!--버튼 타입 서브밋으로 해야 제출기능이됨-->
+    </form>
+    <h1>post 요청</h1>
+    <form action="/postForm" method="post"> 
+        <span>id<input type="text" name="id" required></span>
+        <span>pw<input type="password" name="pw" required></span><br>
+        <h4>birthMonth</h4>
+        <select name="birthMonth"> <!--name은 이 폼의 이름이고, value는 보낼 값 이다.-->
+            <% for(var i=1; i<=12; i++){ %>
+            <option value="<%=i%>"><%=i+"월"%></option>
+            <% } %>
+        </select><br>
+        <h4>comment</h4>
+        <textarea name="content" rows="10" cols="50" placeholder="write your comment"></textarea><br>
+        <button type="submit">submit</button>
+    </form>
+</body>
+</html>
