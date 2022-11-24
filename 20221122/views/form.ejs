@@ -11,8 +11,10 @@
     <form action="/getForm" method="get" name="form1"> 
         <!--action:폼전송할 주소 method:폼전송의 다양한방식. get방식은 url에 정보노출, post방식은 비노출
         name은 선택사항, but input의 네임은 필수-->
-        <span>id<input type="text" name="id" autofocus required/></span>
-        <span>pw<input type="password" name="pw" required/></span><br>
+        <span>id<input type="text" name="id" autofocus required 
+                       pattern="^([a-z0-9]{8,12})$" title="id는 소문자,숫자 조합 8-12자 이내입니다."/></span>
+        <span>pw<input type="password" name="pw" required pattern="^([a-z0-9]{8,12})$" 
+                       title="password는 소문자,숫자 조합 8-12자 이내입니다." oninput="vali();"/></span><br>
         <fieldset style="width:50%;">
             <legend>gender</legend>
             <input type="radio" name="gender" value="male" id="men"/><label for="men">male</label>
@@ -25,7 +27,7 @@
             <input type="checkbox" name="interest" value="soccer" id="soccer"/><label for="soccer">playing soccer</label>
         </fieldset>
                 
-        <button type="submit">submit</button> <!--버튼 타입 서브밋으로 해야 제출기능이됨-->
+        <button type="submit" id="getbtn">submit</button> <!--버튼 타입 서브밋으로 해야 제출기능이됨-->
     </form>
     <h1>post 요청</h1>
     <form action="/postForm" method="post"> 
@@ -41,5 +43,16 @@
         <textarea name="content" rows="10" cols="50" placeholder="write your comment"></textarea><br>
         <button type="submit">submit</button>
     </form>
+    <script>
+        function vali(){
+            var id = document.querySelector("input[name=id]");
+            var pw = document.querySelector("input[name=pw]");
+            const submitbtn = document.querySelector("#getbtn");
+            if (pw.value == id.value){
+                    alert("password는 id와 똑같을 수 없습니다.");
+                    
+                 }
+        }    
+    </script>
 </body>
 </html>

@@ -67,5 +67,5 @@ app.post('/postPractice', (req, res)=>{
 });
 
 app.listen(port, ()=>{
-    console.log("sever oopen :", port);
+    console.log("sever open :", port);
 });

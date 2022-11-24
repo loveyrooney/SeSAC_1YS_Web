@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <button type="button" onclick="sendGet();">getSubmit</button>
+    <button type="button" onclick="sendPost();">postSubmit</button>
+    <form id="info">
+        <span>name</span><input type="text" name="name"/>
+        <span>age</span><input type="text" name="age"/>
+    </form>
+    <div></div>
+    <script>
+        /* 동적 폼 전송은 동기 http통신, ajax, axios, fetch 등 있음. 
+        그중 axios쓸거고 이거 promise기반이기 때문. promise기반은 응답받은 정보를 별도 처리해줘야함 */
+        function sendGet(){
+            var form = document.getElementById("info");
+            axios({
+                method: "get",
+                url: "/activeGet", 
+                params: {name: form.name.value}
+            }).then(function(res){
+                console.log(res.data); //비동기에서 옮겨진 페이지에 나오는 내용, 응답받은 프로미스 정보
+            }); 
+        }
+
+        function sendPost(){
+            var form = document.getElementById("info");
+            fetch("/activeGet",{
+                method: 'post',
+                headers: {"Content-Type":"application/json",},
+                body: JSON.stringify({
+                    name: form.name.value,
+                    age: form.age.value
+                })
+            })
+            .then((res)=>{return res.json()})
+            .then((r)=>{document.querySelector("div").innerHTML= r.msg;});
+
+            /*axios({
+                method: "post",
+                url: "/activeGet", 
+                data: {name: form.name.value}
+            }).then(function(res){
+                console.log(res.data); 
+            }); */
+        }
+    </script>
+</body>
+</html>
