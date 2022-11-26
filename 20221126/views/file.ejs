@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="text" name="filename"> <!--멀터 사용시 파일인풋보다 앞에 있어야 바디받음-->
+        <input type="file" name="userfile">
+        <input type="text" name="name2"> <!--뒤에 있으면 멀터(미들웨어)단계에서 바디 못받음-->
+        <button>upload</button>
+    </form>
+    <hr>
+    <form action="/upload-array" method="POST" enctype="multipart/form-data">
+        <input type="file" name="userfile" multiple>
+        <button>upload</button>
+    </form>
+    <hr>
+    <form action="/upload-fields" method="POST" enctype="multipart/form-data">
+        <input type="file" name="userfile1">
+        <input type="file" name="userfile2">
+        <input type="file" name="userfile3">
+        <button>upload</button>
+    </form>
+    <hr>
+    <form class="info" action="/info" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <legend>개인 정보</legend>
+            <p>아이디:<input type="text" name="id"></p>
+            <p>비밀번호:<input type="text" name="pw"></p>
+            <p>이름:<input type="text" name="name"></p>
+            <p>나이:<input type="text" name="age"></p>
+        </fieldset>
+        <input type="file" name="profile">
+        <button type="button" onclick="reset()">리셋</button>
+        <button type="submit">회원가입</button>
+    </form>
+    <hr>
+    <form class="info" id="active" enctype="multipart/form-data">
+        <fieldset>
+            <legend>개인 정보</legend>
+            <p>아이디:<input type="text" name="id"></p>
+            <p>비밀번호:<input type="text" name="pw"></p>
+            <p>이름:<input type="text" name="name"></p>
+            <p>나이:<input type="text" name="age"></p>
+        </fieldset>
+        <input type="file" name="profile2">
+        <button type="button" onclick="reset()">리셋</button>
+    </form>
+    <button type="button" onclick="sendPost()">회원가입</button><br>
+    <img src="">
+    <p id="g"></p>
+    <script>
+        function reset(){
+            document.getElementsByClassName("info").reset();
+        }
+
+        function sendPost(){
+            var form = document.querySelector("#active");
+            var formData = new FormData(form);
+            //console.log(form.profile2.files[0]); profile2.value 는 경로만가져오고, 이렇게 해야 파일에 대한 정보를 가져옴
+            axios({
+                method: "post",
+                url: "/info2", 
+                data: formData, 
+                headers: {'Contene-Type':'multipart/form-data'} 
+            }).then(function(res){
+                console.log(res.data); //이 데이터는 서버파일에서 보낸 res.send => {path: req.file.path}
+                return res.data;
+            }).then((r)=>{
+                document.querySelector("img").src = r.path; //r의 키값 path로 불러온 value = req.file.path
+                //document.querySelector("#g").innerText = `${r.path}님 반갑습니다`;
+            }); 
+        }
+    </script>
+</body>
+</html>
