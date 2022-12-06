@@ -35,3 +35,13 @@ exports.modify = (body, cb)=>{
         cb();
     });
 }
+
+exports.delete = (id, cb)=>{
+    var sql = `DELETE from member where id='${id}'`;
+    
+    cnn.query(sql, (err, result)=>{
+        if(err) throw err;
+        console.log("update:", result);
+        cb();
+    });
+}

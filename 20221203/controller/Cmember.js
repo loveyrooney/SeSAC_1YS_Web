@@ -19,3 +19,9 @@ exports.modify = (req,res)=>{
         res.send(true);
     });
 }
+
+exports.delete = (req,res)=>{
+    Member.delete(req.body.id, ()=>{
+        res.send(true);
+    });
+}
