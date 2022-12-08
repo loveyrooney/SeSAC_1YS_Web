@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <h1>hello cookie</h1>  
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          pop up!
+          <input type="text" placeholder="write your nickname">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="popup(this);">stop today</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const myModal = new bootstrap.Modal('#exampleModal');
+    if("<%=pop%>" == "display") myModal.show(); //ejs에 보낸 변수 pop js 안에서 사용하려면 문자열로 변경
+
+    function popup(element){
+        let input = document.querySelector("input");
+        axios({
+            method: "post",
+            url: "/cset",
+            //data: { name:input.value}
+        })
+        .then((res)=>{
+            myModal.hide();
+        });
+    }
+  </script>
+</body>
+</html>
