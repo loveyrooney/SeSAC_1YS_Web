@@ -6,29 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js" ></script>
 </head>
 <body>
-    <h1>Hello, Main!</h1>
     <form id="form">
-        <a href="/login">Sign In</a>
-        <a href="/register">Sign Up</a>
-        <button type="button" onclick="logout();">Sign Out</button>
+        <input type="text" name="id"><br>
+        <input type="text" name="pw"><br>
+        <button type="button" onclick="login();">로그인</button>
     </form>
     <script>
-        function logout(){
+        function login(){
+            var form = document.querySelector("#form");
             axios({
-                method: "delete",
+                method: "post",
                 url: "/login",
                 data: {
                     id: form.id.value,
                     pw: form.pw.value
                 }
             })
-            .then((res)=>{ //여기서 로그아웃처리하는 걸로 수정
-                $("h1").text(`Logout success!`);
-                $(".signin").removeClass("d-none"); 
-                $(".signout").addClass("d-none");
+            .then((res)=>{
+                console.log(res.data);
+                if(res.data){
+                    alert("로그인 성공");
+                    window.location.href = "/";
+                } else {
+                    alert("로그인 실패");
+                    form.reset();
+                }
             });
         }
     </script>

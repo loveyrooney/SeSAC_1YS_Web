@@ -5,7 +5,6 @@ const port = 8000;
 
 app.set("view engine", "ejs");
 
-app.use("/static", express.static(__dirname+"/static"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(session({
@@ -20,6 +19,37 @@ app.use(session({
 
 const user = {id:"abc", pw:"1234"}
 
+//메인 페이지를 따로 설정
+app.get("/",(req,res)=>{
+    console.log(req.session.user);
+    if(req.session.user) res.render("se", {isLogin: true, id:req.session.user});
+    else res.render("se", {isLogin: false}); 
+});
+
+//로그인 페이지를 따로 설정
+app.get("/login", (req,res)=>{
+    res.render("login");
+});
+
+//로그인 후의 상황은 동적 폼 전송
+app.post("/login", (req,res)=>{
+    if(req.body.id == user.id && req.body.pw == user.pw){
+        req.session.user = req.body.id;
+        res.send(true);
+    } else {
+        res.send(false);
+    }
+});
+
+//로그아웃을 백에서 페이지 변경하는 방법도 있고, 프론트에서 동적으로 변경하는 방법도 있음
+app.get("/logout", (req,res)=>{ 
+    req.session.destroy((err)=>{
+        if(err) throw err;
+        res.redirect("/"); //메인페이지 새로고침하는 함수
+    });
+});
+
+/* 내가 만들었던 기존 실습 이거 반영해서 만들어보기
 app.get("/",(req,res)=>{
     if(req.session.user) res.render("session2", {isLogin:"on"});
     else res.render("session", {isLogin:"off"});
@@ -44,6 +74,7 @@ app.delete("/login", (req,res)=>{
         }
     });
 });
+*/
 
 app.listen(port, ()=>{
     console.log("sever open", port);
