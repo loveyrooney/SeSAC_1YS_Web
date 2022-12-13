@@ -1,0 +1,23 @@
+{
+    "development" : {
+        "host": "localhost",
+        "database": "table1",
+        "username": "user",
+        "password": "@sesac07",
+        "dialect": "mysql"
+    },
+    "production" : {  
+        "host": "localhost",
+        "database": "table1",
+        "username": "user",
+        "password": "@sesac07",
+        "dialect": "mysql"
+    },
+    "mile" : {  
+        "host": "localhost",
+        "database": "mileeasy",
+        "username": "mileuser",
+        "password": "@mile",
+        "dialect": "mysql"
+    }
+}
