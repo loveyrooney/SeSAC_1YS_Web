@@ -8,8 +8,8 @@ app.use("/static", express.static(__dirname+"/static"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const router2 = require("./routes/index2");
-app.use('/mile', router2);
+const router = require("./routes");
+app.use('/', router);
 
 app.get('*', (req, res)=>{
     res.send("주소가 존재하지 않습니다. 다시 한 번 확인해주세요.");

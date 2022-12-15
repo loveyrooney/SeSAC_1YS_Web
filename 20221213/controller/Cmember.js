@@ -7,6 +7,7 @@ exports.login = async (req, res)=>{
         where: {id: req.query.id}, 
         limit: 1
     });
+    console.log(result);
     res.send(result[0]);
 }
 

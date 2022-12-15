@@ -2,70 +2,70 @@ const User = (Sequelize, DataTypes)=>{
     return Sequelize.define(
         "User", 
         { 
-            id: { //id varchar(15) not null primary key
+            id: { //id varchar(50) Not null primary key
                 type: DataTypes.STRING(50),
                 allowNull: false,
                 primaryKey: true,
             },
-            pw: { //pw varchar(15) not null
+            pw: { //pw varchar(50) not null
                 type: DataTypes.STRING(50),
                 allowNull: false
             },
-            name: { //name varchar(5)
+            name: { //name varchar(128) not null
                 type: DataTypes.STRING(128),
                 allowNull: false
             },
-            mbti_ok: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
+            mbti_ok: { //mbti_ok varchar(5) default "N"
+                type: DataTypes.STRING(5),
+                allowNull: true,
+                defaultValue: "N"
             },
-            auth: {
-                type: DataTypes.STRING(50),
-                allowNull: false,
+            auth: { //auth varchar(5) not null
+                type: DataTypes.STRING(5),
+                allowNull: true,
             },
-            mbti: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
+            mbti: { //mbti varchar(4)
+                type: DataTypes.STRING(4),
+                allowNull: true
             },
-            E: {
+            E: { //E int
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true
             },
             I: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true
             },
             N: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true
             },
             S: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true
             },
             F: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true
             },
             T: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true
             },
             P: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true
             },
             J: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true
             }
     
         },
         {
             tableName: "User",
-            freezeTableName: true, //자동으로 테이블이름이 복수형태 되는거 방지
+            freezeTableName: true, 
             timestamps: false, // 허용하려면 default true createdAt updatedAt
-            //그 외 collate, charset 등 
         }
     )
 }
