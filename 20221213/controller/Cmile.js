@@ -24,7 +24,8 @@ exports.signup = async (req,res)=>{
     }
     let result = await User.create(data);
       console.log(result.dataValues.id);
-      res.send(result.id);
+      console.log( result.id );
+      res.send({id : result.id});
 }
 
 exports.yap = async (req, res)=>{
