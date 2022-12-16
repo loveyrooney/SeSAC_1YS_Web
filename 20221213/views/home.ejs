@@ -63,9 +63,9 @@
             </form>
           </div>
   
-          <div class="login">
-            <form id="login">
-              <label for="chk" aria-hidden="true">Login</label>
+          <div class="signin">
+            <form id="signin">
+              <label for="chk" aria-hidden="true">Sign in</label>
               <h3></h3>
               <input type="text" name="userId" placeholder="id" required />
               <input
@@ -74,7 +74,7 @@
                 placeholder="Password"
                 required
               />
-              <button type="button" onclick="login();">Login</button>
+              <button type="button" onclick="signin();">Sign in</button>
             </form>
           </div>
         </div>
@@ -87,7 +87,7 @@
                     id:form.userId.value,
                     pw:form.userPw.value,
                 }
-            if(user.name == "" && user.id =="" && user.pw== ""){
+            if(user.name == "" || user.id =="" || user.pw== ""){
                 alert("회원 정보를 모두 기입해 주세요");
             } else {
                 axios({
@@ -98,7 +98,8 @@
                 .then((res)=>{
                         console.log(res);
                     if(res.data != false) { alert(`이미 있는 ID 입니다`);
-                        $("#signup")[0].reset();
+                        $("input[name=userId]").val("");
+                        $("input[name=userPw]").val("");
                     } else {
                         axios({
                         method: 'post',
@@ -107,12 +108,39 @@
                         })
                         .then((response)=>{
                             console.log(response);
-                            alert(`welcome, ${response.data}`);
+                            alert(`welcome, ${response.data.name}`);
                         });
                     }
                 });           
             }   
         }    
+
+        function signin(){
+            let form = document.querySelector("#signin");
+            let user = {
+                    id:form.userId.value,
+                    pw:form.userPw.value,
+                }
+            if(user.id =="" || user.pw== ""){
+                alert("회원 정보를 모두 기입해 주세요");
+            } else {
+                axios({
+                    method: 'get',
+                    url: '/signin',
+                    params: {
+                        id: user.id,
+                        pw: user.pw
+                    }
+                })
+                .then((res)=>{
+                    if(res.data.name){
+                       alert(`welcome, ${res.data.name}!`);
+                    } else {
+                        alert(`정확한 정보를 입력하세요`);
+                    } 
+                });
+            }    
+        }
             
         /*
         function signin(){

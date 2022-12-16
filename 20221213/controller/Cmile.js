@@ -9,7 +9,7 @@ exports.idread = async (req,res)=>{
     limit: 1
     });
   console.log(result);
-  if(result.length>0) res.send(true);
+  if(result !== null) res.send(true);
   else res.send(false);
 }
 
@@ -23,9 +23,18 @@ exports.signup = async (req,res)=>{
         //mbti 검사한 경우는 추후에 추가 
     }
     let result = await User.create(data);
-      console.log(result.dataValues.id);
-      console.log( result.id );
-      res.send({id : result.id});
+      console.log(result);
+      res.send({name : result.name});
+}
+
+exports.signin = async (req, res)=>{
+    let result = await User.findOne({ 
+      where: {id: req.query.id}
+    });
+    console.log(result); //배열에 안 담김
+    if(result == null) res.send(false);
+    else if(req.query.pw !== result.pw) res.send(false);
+    else {console.log("true"); res.send({name: result.name});}
 }
 
 exports.yap = async (req, res)=>{
