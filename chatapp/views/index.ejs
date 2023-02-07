@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {text-align: center; background-color:rgb(101, 181, 251);}
+        h1 {color:white; text-shadow: 2px 2px 2px grey; margin:3%;}
+        header > p {color:white; margin: 0;}
+        header {margin: 10%;}
+        .chatbox { position: relative; margin:0 10% 0 10%; padding: 5px; height: 450px; 
+                   background-color: rgb(151, 206, 255); border-radius: 10px;}
+        .chatinput { position:absolute; top:92%; left:1%; margin:0 5% 0 5%; width: 70%; height: 22px; border-style: none; border-radius: 3px;}
+        .chatsend  { position: absolute; top:92%; left:80%; height: 25px; border-color: rgb(255, 243, 10);
+                     background-color: rgb(255, 243, 10); border-radius: 5px; border-style: none;}
+        .userchat { margin: 2%; border-radius: 10px; background: #ffffff;
+                 padding: 3%; text-align: left; width:50%; height: auto;}
+        .mychat { margin: 2% 0 2% 42%; border-radius: 10px; background: #ffff00;
+                 padding: 3%; text-align: right; width:50%; height: auto;}
+        /* .sb13:before { content: ""; width: 0px; height: 0px;position: absolute;
+                       border-left: 15px solid #00bfb6; border-right: 15px solid transparent;
+                       border-top: 15px solid #00bfb6; border-bottom: 15px solid transparent;
+                        right: -16px; }
+        .sb14:before { content: ""; width: 0px; height: 0px; position: absolute;
+                       border-left: 15px solid transparent; border-right: 15px solid #00bfb6;
+                       border-top: 15px solid #00bfb6; border-bottom: 15px solid transparent;
+                       left: -16px; } */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hello, Chatapp!</h1>
+        <p>Enjoy your breaktime😆</p>
+    </header>
+    <div class="chatbox">
+        <div class="mychat">I'm speech bubble</div>
+        <div class="userchat">I'm speech bubble</div>
+        <div class="userchat">I'm speech bubblealskdjflskadjf lksjdlkfjlskd jflksajdlkf jslkdjflk sjdlkfjlaskdf</div>
+        <input class="chatinput" type="text" />
+        <button class="chatsend" type="button">send</button>
+    </div>
+</body>
+</html>
