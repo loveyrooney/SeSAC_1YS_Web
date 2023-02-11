@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        .d-none {display: none;}
+    </style>
+</head>
+<body>
+    <h1>movie log</h1>
+    <form>
+        <p>영화 검색
+            <input type="text" name="search"/>
+            <button type="button" onclick="movie()">검색</button>
+        </p>
+        <div class="titlelist"></div>
+        <p>제목<input name="title" type="text"/></p>
+        <p>개봉년도<input name="release" type="text"/></p>
+        <p>감독<input name="director" type="text"/></p>
+        <p>주연<input name="actor" type="text"/></p>
+        <div id="img"></div>
+        <div id="comment">
+            <textarea name="story" rows="7" cols="33" placeholder="write your comment">
+            </textarea>
+        </div>
+    </form>
+    <script>
+        function movie() {
+            let title = $('input[name=search]');
+            console.log(title.val());
+            axios({
+                method: "get",
+                url: "/api",
+                params : {title: title.val()}
+            })
+            .then((res)=>{
+                console.log(res.data);
+                for(let i=0; i<res.data.length; i++) {
+                    $('.titlelist').append(`<p onclick="titleconfirm(this)">${res.data[i].title},${res.data[i].pubDate},${res.data[i].director}</p>`);
+                }
+            });
+        }
+        function titleconfirm(e) {
+            console.log(e.innerText.split(','));
+            let movie = e.innerText.split(',');
+            $('.titlelist').addClass('d-none');
+            $('input[name=title]').val(movie[0]);
+            $('input[name=release]').val(movie[1]);
+            $('input[name=director]').val(movie[2]);
+        }
+    </script>
+</body>
+</html>
